@@ -15,7 +15,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://peixin.github.io/
+url: https://blog.liupei.xin/
 root: /
 permalink: :year/:month/:day/:urlname/
 permalink_defaults:
