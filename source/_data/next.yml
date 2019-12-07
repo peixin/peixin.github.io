@@ -1,0 +1,23 @@
+minify: true
+
+favicon:
+  small: /images/favicon-16x16.png
+  medium: /images/favicon-32x32.png
+  apple_touch_icon: /images/apple-touch-icon-next.png
+  safari_pinned_tab: /images/logo.svg
+
+scheme: Pisces
+
+menu:
+  home: / || home
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+
+social:
+  GitHub: https://github.com/peixin || github
+  E-Mail: fengyi.mail@gmail.com || envelope
+  StackOverflow: https://stackoverflow.com/users/1085189/liupeixin || stack-overflow
+
+google_analytics:
+  tracking_id: UA-44020421-1
