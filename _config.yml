@@ -4,14 +4,14 @@
 
 # Site
 title: DevOps 技术笔记
-subtitle: ''
-description: 'Liupeixin Personal Blog'
+subtitle: ""
+description: "Liupeixin Personal Blog"
 keywords: Technology, Tech, DevOps, Developer
 author: Liupeixin
 language:
   - en
   - zh-CN
-timezone: 'Asia/Shanghai'
+timezone: "Asia/Shanghai"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -40,7 +40,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -50,14 +50,14 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace: ''
+  tab_replace: ""
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -98,7 +98,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 'git'
+  type: "git"
   repo:
     github: git@github.com:peixin/peixin.github.io.git,master
     coding: git@git.coding.net:peixinliu/peixinliu.git,master
@@ -107,3 +107,9 @@ deploy:
 easy_tags_plugin:
   enable: true
   tag_name_case: 1
+
+# hexo-generator-sitemap
+sitemap:
+  path: sitemap.xml
+  #template: ./sitemap_template.xml
+  rel: false
