@@ -113,3 +113,17 @@ sitemap:
   path: sitemap.xml
   #template: ./sitemap_template.xml
   rel: false
+
+#hexo-asset-pipeline
+asset_pipeline:
+  revisioning:
+    enable: true
+    exclude: ["robots.txt", "CNAME", "sitemap*.xml", "*.json", "lib/**/*"]
+  clean_css:
+    enable: true
+  uglify_js:
+    enable: true
+  imagemin:
+    enable: true
+  html_minifier:
+    enable: true
