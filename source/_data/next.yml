@@ -14,10 +14,27 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
 
+menu_settings:
+  icons: true
+  badges: false
+
+avatar:
+  url: /images/avatar.jpg
+  rounded: true
+  rotated: false
+
 social:
   GitHub: https://github.com/peixin || github
   E-Mail: fengyi.mail@gmail.com || envelope
   StackOverflow: https://stackoverflow.com/users/1085189/liupeixin || stack-overflow
 
+social_icons:
+  icons_only: true
+
 google_analytics:
   tracking_id: UA-44020421-1
+
+post_meta:
+  updated_at:
+    enable: true
+    another_day: true
