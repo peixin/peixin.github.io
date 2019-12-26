@@ -3,5 +3,5 @@ title: {{ title }}
 tags:
 categories:
 coauthor:
-urlname: {{ s or title }}
+s: {{ slug or title }}
 ---

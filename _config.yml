@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: DevOps 技术笔记
-subtitle: ""
-description: "Liupeixin Personal Blog"
+title: "Liupeixin's BLOG"
+subtitle:
+description:
 keywords: Technology, Tech, DevOps, Developer
 author: Liupeixin
 language:
@@ -17,11 +17,11 @@ timezone: "Asia/Shanghai"
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://blog.liupei.xin/
 root: /
-permalink: :year/:month/:day/:urlname/
+permalink: :year/:month/:day/:s/
 permalink_defaults:
-  urlname: post
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
+  trailing_html: false
 
 # Directory
 source_dir: source

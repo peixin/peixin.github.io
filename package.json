@@ -9,10 +9,11 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "4.0.0"
+    "version": "4.2.0"
   },
   "dependencies": {
-    "hexo": "^4.0.0",
+    "babel-runtime": "^6.26.0",
+    "hexo": "^4.2.0",
     "hexo-asset-pipeline": "^1.8.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-easy-tags-plugin": "^1.0.1",

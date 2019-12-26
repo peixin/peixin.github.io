@@ -1,16 +1,16 @@
 ---
 uuid: e5b24a40-183d-11ea-9951-4b27dfb0f0c7
 title: Node.js 安装 sharp libvips
-urlname: nodejs-install-sharp-libvips
 s: nodejs-install-sharp-libvips
 date: 2019-12-06 23:34:31
 tags:
-    - nodejs
-    - sharp
-    - libvips
-    - npm
-    - yarn
+  - nodejs
+  - sharp
+  - libvips
+  - npm
+  - yarn
 categories:
+  - Technology
 coauthor: liupeixin
 ---
 ### 起因
@@ -21,7 +21,7 @@ coauthor: liupeixin
 
 > The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG and WebP images of varying dimensions.
 > Resizing an image is typically 4x-5x faster than using the quickest ImageMagick and GraphicsMagick settings due to its use of libvips.
-
+<!-- more -->
 
 
 [libvips](https://github.com/libvips/libvips) 是一个用C实现的图片处理库，它提供了每个平台的二进制包，可以让你不必自己从源码编译。
