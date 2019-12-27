@@ -98,10 +98,13 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: "git"
-  repo:
-    github: git@github.com:peixin/peixin.github.io.git,master
-    coding: git@git.coding.net:peixinliu/peixinliu.git,master
+  - type: leancloud_counter_security_sync
+  - type: "git"
+    repo:
+      github: git@github.com:peixin/peixin.github.io.git,master
+      coding: git@git.coding.net:peixinliu/peixinliu.git,master
+
+
 
 # hexo-easy-tags-plugin
 easy_tags_plugin:
@@ -127,3 +130,10 @@ asset_pipeline:
     enable: true
   html_minifier:
     enable: true
+
+leancloud_counter_security:
+  enable_sync: true
+  app_id: "54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI"
+  app_key: "qtJ4MdvYSeDJvhLWQRUdr50C"
+  username: "blog_ops"
+  password: "soQ4897accYcoY2g"

@@ -20,6 +20,7 @@ coauthor: liupeixin
 - 选择英文语言
 - 要求重启，拒绝
 - 停止更新
+- 顶部状态栏，退出COMODO
 <!-- more -->
 ## 配置
 
@@ -50,7 +51,7 @@ coauthor: liupeixin
 ![disable_automatically_check_update.png](http://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/disable_automatically_check_update.png)
 
 - Remove Update Host
-![remove_update _host.png](http://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/remove_update _host.png)
+![remove_update _host.png](http://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/remove_update_host.png)
 
 
 

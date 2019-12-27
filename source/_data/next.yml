@@ -36,5 +36,12 @@ google_analytics:
 
 post_meta:
   updated_at:
-    enable: true
+    enable: false
     another_day: true
+
+leancloud_visitors:
+  enable: true
+  app_id: "54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI"
+  app_key: "qtJ4MdvYSeDJvhLWQRUdr50C"
+  security: true
+  betterPerformance: true
