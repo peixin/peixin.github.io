@@ -30,5 +30,8 @@
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
     "hexo-uuid": "^1.0.2"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.3"
   }
 }
