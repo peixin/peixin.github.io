@@ -6,7 +6,8 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "assets": "node ./process_assets.js"
   },
   "hexo": {
     "version": "4.2.0"
@@ -32,6 +33,7 @@
     "hexo-uuid": "^1.0.2"
   },
   "devDependencies": {
+    "hasha": "^5.1.0",
     "shelljs": "^0.8.3"
   }
 }

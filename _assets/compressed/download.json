@@ -1,0 +1,12 @@
+{
+  "dest_dir": "_assets/compressed",
+  "bucket": "blog-public-assets",
+  "prefix": "assets/",
+  "suffixes": ".png,.jpg,.jpeg,.gif,.icon,.ico",
+  "cdn_domain": "blog-assets.liupei.xin",
+  "referer": "https://blog.liupei.xin",
+  "log_file": "",
+  "log_level": "info",
+  "log_rotate": 1,
+  "log_stdout": true
+}

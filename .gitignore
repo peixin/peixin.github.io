@@ -8,3 +8,14 @@ public/
 .idea/
 .vscode/
 package-lock.json
+source/leancloud.memo
+upload_overwrite.txt
+_assets/*
+!_assets/original/
+!_assets/compressed/
+_assets/original/*
+_assets/compressed/*
+!_assets/original/upload.json
+!_assets/compressed/upload.json
+!_assets/compressed/download.json
+

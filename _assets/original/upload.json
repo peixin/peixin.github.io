@@ -1,0 +1,22 @@
+{
+  "src_dir": "_assets/original",
+  "bucket": "blog-private-assets",
+  "file_list": "",
+  "key_prefix": "",
+  "ignore_dir": false,
+  "overwrite": true,
+  "check_exists": true,
+  "check_hash": true,
+  "check_size": false,
+  "rescan_local": true,
+  "skip_file_prefixes": "upload.json,download.json",
+  "skip_path_prefixes": "",
+  "skip_fixed_strings": ".svn,.git",
+  "skip_suffixes": ".DS_Store,.exe,.compressed.log.json",
+  "log_file": "",
+  "log_level": "info",
+  "log_rotate": 1,
+  "log_stdout": true,
+  "file_type": 1,
+  "delete_on_success": false
+}
