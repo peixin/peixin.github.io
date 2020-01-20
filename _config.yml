@@ -102,7 +102,7 @@ deploy:
   - type: "git"
     repo:
       github: git@github.com:peixin/peixin.github.io.git,master
-      coding: git@git.coding.net:peixinliu/peixinliu.git,master
+      coding: git@e.coding.net:peixinliu/peixinliu.git,master
 
 
 
