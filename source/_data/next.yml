@@ -44,7 +44,7 @@ leancloud_visitors:
   app_id: "54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI"
   app_key: "qtJ4MdvYSeDJvhLWQRUdr50C"
   security: true
-  betterPerformance: true
+  betterPerformance: false
 
 custom_file_path:
   head: source/_data/head.swig
