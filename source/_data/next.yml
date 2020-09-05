@@ -44,7 +44,7 @@ leancloud_visitors:
   enable: true
   app_id: 54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI
   app_key: qtJ4MdvYSeDJvhLWQRUdr50C
-  server_url:
+  server_url: https://leancloud.liupei.xin
   security: true
 
 custom_file_path:

@@ -135,5 +135,6 @@ leancloud_counter_security:
   enable_sync: true
   app_id: "54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI"
   app_key: "qtJ4MdvYSeDJvhLWQRUdr50C"
+  server_url: https://leancloud.liupei.xin
   username: "blog_ops"
   password: "soQ4897accYcoY2g"
