@@ -10,7 +10,6 @@ public/
 .history
 
 package-lock.json
-source/leancloud.memo
 upload_overwrite.txt
 _assets/*
 !_assets/original/
