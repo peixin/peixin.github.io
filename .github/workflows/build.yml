@@ -1,4 +1,4 @@
-name: build
+name: Build and Deploy
 
 on:
   push:
@@ -22,9 +22,15 @@ jobs:
           node-version: "12.x"
 
     - name: Setup env
+      shell: bash
       env:
         GH_ACTION_DEPLOY_KEY: ${{ secrets.GH_ACTION_DEPLOY_KEY }}
+        LEANCLOUD_COUNTER_SECURITY_USERNAME: ${{ secrets.LEANCLOUD_COUNTER_SECURITY_USERNAME }}
+        LEANCLOUD_COUNTER_SECURITY_PASSWORD: ${{ secrets.LEANCLOUD_COUNTER_SECURITY_PASSWORD }}
       run: |
+        # set timezone
+        sudo timedatectl set-timezone Asia/Shanghai
+
         # set up private key for deploy
         mkdir -p ~/.ssh/
         echo "$GH_ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
@@ -35,6 +41,10 @@ jobs:
         # set git infomation
         git config --global user.name 'liupeixin'
         git config --global user.email 'fengyi.mail@gmail.com'
+
+        # update _config.yml
+        sed -i "s/LEANCLOUD_COUNTER_SECURITY_USERNAME/${LEANCLOUD_COUNTER_SECURITY_USERNAME}/g" _config.yml
+        sed -i "s/LEANCLOUD_COUNTER_SECURITY_PASSWORD/${LEANCLOUD_COUNTER_SECURITY_PASSWORD}/g" _config.yml
 
     - name: Cache NPM dependencies
       id: cache
@@ -60,5 +70,12 @@ jobs:
         git status | grep "db.json" && git add db.json || echo "db.json no changes"
         git status | grep "source/leancloud.memo" && git add source/leancloud.memo  || echo "leancloud.memo no changes"
         git status | grep "Changes to be committed:" && git commit -m "[ci skip]: update cache" || echo "nothing to commit"
+
         remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
+        git checkout .
+
+        echo "---debug---"
+        git status
+        echo "---debug---"
+
         git status | grep "nothing to commit, working tree clean" && git push "${remote_repo}" HEAD:hexo-source || echo "nothing to push"

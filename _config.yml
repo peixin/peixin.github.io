@@ -136,5 +136,5 @@ leancloud_counter_security:
   app_id: "54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI"
   app_key: "qtJ4MdvYSeDJvhLWQRUdr50C"
   server_url: https://leancloud.liupei.xin
-  username: "blog_ops"
-  password: "soQ4897accYcoY2g"
+  username: "LEANCLOUD_COUNTER_SECURITY_USERNAME"
+  password: "LEANCLOUD_COUNTER_SECURITY_PASSWORD"
