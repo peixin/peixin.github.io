@@ -55,9 +55,10 @@ jobs:
         # publish
         yarn clean && yarn build && yarn deploy
 
-    - name: Commit leancloud.memo
+    - name: Commit cache
       run: |
-        pwd
-        ls
-        git branch
-        git status
+        git status | grep "db.json" && git add db.json || echo "db.json no changes"
+        git status | grep "source/leancloud.memo" && git add source/leancloud.memo  || echo "leancloud.memo no changes"
+        git status | grep "Changes to be committed:" && git commit -m "[ci skip]: update cache" || echo "nothing to commit"
+        remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
+        git status | grep "nothing to commit, working tree clean" && git push "${remote_repo}" HEAD:hexo-source || echo "nothing to push"
