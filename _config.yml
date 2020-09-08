@@ -138,3 +138,8 @@ leancloud_counter_security:
   server_url: https://leancloud.liupei.xin
   username: "LEANCLOUD_COUNTER_SECURITY_USERNAME"
   password: "LEANCLOUD_COUNTER_SECURITY_PASSWORD"
+
+search:
+  path: search.json
+  field: post
+  content: true

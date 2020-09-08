@@ -47,5 +47,12 @@ leancloud_visitors:
   server_url: https://leancloud.liupei.xin
   security: true
 
+local_search:
+  enable: true
+  trigger: auto
+  top_n_per_article: 1
+  unescape: false
+  preload: false
+
 custom_file_path:
   head: source/_data/head.swig
