@@ -6,8 +6,7 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server",
-    "assets": "node ./process_assets.js"
+    "server": "hexo server"
   },
   "hexo": {
     "version": "5.1.1"
@@ -15,7 +14,6 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "hexo": "^5.1.1",
-    "hexo-asset-pipeline": "^1.8.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-easy-tags-plugin": "^1.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -35,8 +33,5 @@
   "devDependencies": {
     "hasha": "^5.1.0",
     "shelljs": "^0.8.3"
-  },
-  "resolutions": {
-    "bin-wrapper": "npm:bin-wrapper-china"
   }
 }
