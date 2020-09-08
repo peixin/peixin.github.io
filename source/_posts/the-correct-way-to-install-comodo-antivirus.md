@@ -9,7 +9,6 @@ tags:
   - tools
 categories:
   - Trick
-coauthor: liupeixin
 ---
 ## 前言
 由于某些奇怪的原因，要在Mac系统安装杀毒软件，我们选择了COMODO。然而这软件太不给力，许多人安装了，都会出现卡死，进不了系统等莫名问题。所以，要寻找一条“稳妥”的安装方法。

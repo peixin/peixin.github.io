@@ -5,7 +5,6 @@ s: birth-of-site-logo
 date: 2019-12-04 18:25:15
 tags:
 categories: Site
-coauthor: liupeixin
 ---
 最近为公司创建了团队博客，采用的 [Hexo](https://hexo.io/) 框架，利用 [GitHub](https://github.com/) 存储源文件。push 之后触发 [GitHub Actions](https://github.com/features/actions) build成静态网站，继而 deploy 到 [GitHub](https://pages.github.com/) 和 [Coding](https://coding.net/help/doc/pages) 的 Pages 服务。最后域名解析，配置国外 IP 解析到 GitHub，国内 IP 解析到 [Coding](https://coding.net/)。
 

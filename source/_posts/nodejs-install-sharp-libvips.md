@@ -11,7 +11,6 @@ tags:
   - yarn
 categories:
   - Technology
-coauthor: liupeixin
 ---
 ### 起因
 
