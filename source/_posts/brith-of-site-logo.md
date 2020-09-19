@@ -16,18 +16,18 @@ categories: Site
 
 马上给雕兄发微信，简单的描述了下需求，雕兄一副一切了然于胸的神态，我毋需多言。片刻就发来了设计稿：
 
-![manuscript](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript.jpg)
+![manuscript](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript.jpg-public)
 Logo：
 
-![manuscript_logo_v1](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_logo_v1.jpg)
+![manuscript_logo_v1](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_logo_v1.jpg-public)
 
-![manuscript_logo](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_logo.jpg)
+![manuscript_logo](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_logo.jpg-public)
 
 
 
 然后，夫人看了提出要加入她，才算完满家庭，再给雕兄提出需求，马上又有回复。
 
-![manuscript_family](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_family.jpg)
+![manuscript_family](http://blog-assets.liupei.xin/assets/birth-of-site-logo/manuscript_family.jpg-public)
 
 
 
@@ -35,13 +35,13 @@ Logo：
 
 ![logo](http://blog-assets.liupei.xin/assets/birth-of-site-logo/logo.png)
 
-![father_son](http://blog-assets.liupei.xin/assets/birth-of-site-logo/father_son.jpg)
+![father_son](http://blog-assets.liupei.xin/assets/birth-of-site-logo/father_son.jpg-public)
 
-![father_son_work](http://blog-assets.liupei.xin/assets/birth-of-site-logo/father_son_work.jpg)
+![father_son_work](http://blog-assets.liupei.xin/assets/birth-of-site-logo/father_son_work.jpg-public)
 
-![family](http://blog-assets.liupei.xin/assets/birth-of-site-logo/family.jpg)
+![family](http://blog-assets.liupei.xin/assets/birth-of-site-logo/family.jpg-public)
 
-![family_v1](http://blog-assets.liupei.xin/assets/birth-of-site-logo/family_v1.jpg)
+![family_v1](http://blog-assets.liupei.xin/assets/birth-of-site-logo/family_v1.jpg-public)
 
 完美！
 
