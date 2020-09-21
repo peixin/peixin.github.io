@@ -57,14 +57,17 @@ const removeExifData = (filePath) => {
 
 const blur = async (filePath, blurValue = 0) => {
   if (!blurValue) {
-    return filePath;
+    blurValue = 0;
   }
   blurValue = parseInt(blurValue);
   if (!blurValue) {
-    return filePath;
+    blurValue = 0;
   }
   const image = await jimp.read(filePath);
-  await image.blur(blurValue).quality(60).writeAsync(filePath);
+  if(blurValue) {
+    await image.blur(blurValue)
+  }
+  await image.quality(60).writeAsync(filePath);
   return filePath;
 };
 
