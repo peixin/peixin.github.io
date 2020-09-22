@@ -82,6 +82,9 @@ const addArticle = async (sessionToken, articleUrl) => {
 };
 
 const deleteArticle = async (sessionToken, objectId) => {
+  if (!objectId) {
+    return null;
+  }
   const data = await axiosWrapper({
     method: "delete",
     url: `/classes/Counter/${objectId}`,
@@ -108,16 +111,16 @@ const main = async () => {
     return;
   }
 
-  const articleUrl = "/2020/09/18/2020-9-18/";
+  const articleUrl = "/2019/09/18/2019-9-18/";
 
   // const newData = await addArticle(token, articleUrl);
   // console.log(newData);
 
-  const articleData = await getArticle(token, articleUrl);
-  console.log(articleData);
+  const { results } = await getArticle(token, articleUrl);
+  const articleData = results[0];
 
-  // const deletedData = await deleteArticle(token, articleData.objectId);
-  // console.log(deletedData);
+  const deletedData = await deleteArticle(token, articleData? articleData.objectId : null);
+  console.log(deletedData);
 };
 
 main();
