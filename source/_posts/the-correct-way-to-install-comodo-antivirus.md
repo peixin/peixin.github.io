@@ -26,31 +26,31 @@ categories:
 #### Varius Scanner Settings
 
 - Open Scaner Settings
-![scanner_settings.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scanner_settings.png)
+![scanner_settings.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scanner_settings.png-public)
 
 - Disable Real Time Scanning
-![real time scanning](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scanner_settings.png)
+![real time scanning](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scanner_settings.png-public)
 
 - Disable Manual Scanning
-![manual_scanning.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/manual_scanning.png)
+![manual_scanning.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/manual_scanning.png-public)
 
 - Disable Scheduled Scanning
-![scheduled_scanning.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scheduled_scanning.png)
+![scheduled_scanning.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/scheduled_scanning.png-public)
 
 - Exclusions Root Directory
-![exclusions.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/exclusions.png)
+![exclusions.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/exclusions.png-public)
 
 
 
 #### Preferences
 - Open Preferences
-![preferences.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/preferences.png)
+![preferences.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/preferences.png-public)
 
 - Disable automatically check update
-![disable_automatically_check_update.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/disable_automatically_check_update.png)
+![disable_automatically_check_update.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/disable_automatically_check_update.png-public)
 
 - Remove Update Host
-![remove_update _host.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/remove_update_host.png)
+![remove_update _host.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/remove_update_host.png-public)
 
 
 
@@ -140,7 +140,7 @@ CMD + Space, 输入 comodo 打开 COMODO Antivirus。
 
 #### 最终显示
 
-![all_done.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/all_done.png)
+![all_done.png](https://blog-assets.liupei.xin/assets/the-correct-way-to-install-comodo-antivirus/all_done.png-public)
 
 搞定！
 
