@@ -67,15 +67,14 @@ jobs:
 
     - name: Commit cache
       run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "GitHub Action"
         git status | grep "db.json" && git add db.json || echo "db.json no changes"
         git status | grep "source/leancloud.memo" && git add source/leancloud.memo  || echo "leancloud.memo no changes"
-        git status | grep "Changes to be committed:" && git commit -m "[ci skip]: update cache" || echo "nothing to commit"
+        git commit -m "[ci skip]: update cache" || echo "nothing to commit"
 
-        remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
-        git checkout .
-
-        echo "---debug---"
-        git status
-        echo "---debug---"
-
-        git status | grep "nothing to commit, working tree clean" && git push "${remote_repo}" HEAD:hexo-source || echo "nothing to push"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
