@@ -509,10 +509,10 @@ atob@^2.1.2:
   resolved "https://registry.npm.taobao.org/atob/download/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
 
-axios@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.npm.taobao.org/axios/download/axios-0.20.0.tgz?cache=0&sync_timestamp=1597979584536&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
-  integrity sha1-BXujDwSIRpSZOozQf6OUz/EcUL0=
+axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.0.tgz?cache=0&sync_timestamp=1603470451980&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha1-Jt8IiAOiNQ3/LCf5b++Z/klEKso=
   dependencies:
     follow-redirects "^1.10.0"
 
@@ -1110,10 +1110,10 @@ has-flag@^4.0.0:
   resolved "https://registry.npm.taobao.org/has-flag/download/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
 
-hasha@^5.1.0:
-  version "5.2.0"
-  resolved "https://registry.npm.taobao.org/hasha/download/hasha-5.2.0.tgz#33094d1f69c40a4a6ac7be53d5fe3ff95a269e0c"
-  integrity sha1-MwlNH2nECkpqx75T1f4/+Vomngw=
+hasha@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.npm.taobao.org/hasha/download/hasha-5.2.2.tgz?cache=0&sync_timestamp=1602204231185&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhasha%2Fdownload%2Fhasha-5.2.2.tgz#a48477989b3b327aea3c04f53096d816d97522a1"
+  integrity sha1-pIR3mJs7MnrqPAT1MJbYFtl1IqE=
   dependencies:
     is-stream "^2.0.0"
     type-fest "^0.8.0"
@@ -1211,26 +1211,27 @@ hexo-generator-category@^1.0.0:
   dependencies:
     hexo-pagination "1.0.0"
 
-hexo-generator-index@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/hexo-generator-index/download/hexo-generator-index-1.0.0.tgz#8c9f157dcfa0af4f8417f77a4eb5b3831f69a719"
-  integrity sha1-jJ8Vfc+gr0+EF/d6TrWzgx9ppxk=
+hexo-generator-index@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/hexo-generator-index/download/hexo-generator-index-2.0.0.tgz#15e71f4d28ee9d2172e2d77e8d1dba04882edc8f"
+  integrity sha1-FecfTSjunSFy4td+jR26BIgu3I8=
   dependencies:
     hexo-pagination "1.0.0"
+    timsort "^0.3.0"
 
-hexo-generator-searchdb@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.npm.taobao.org/hexo-generator-searchdb/download/hexo-generator-searchdb-1.3.2.tgz#8485456d199cc87255246ffcaff8530741b6292c"
-  integrity sha1-hIVFbRmcyHJVJG/8r/hTB0G2KSw=
+hexo-generator-searchdb@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.npm.taobao.org/hexo-generator-searchdb/download/hexo-generator-searchdb-1.3.3.tgz#48d585c9e2e232cd5f875e9b3bc5442e8525d86e"
+  integrity sha1-SNWFyeLiMs1fh16bO8VELoUl2G4=
   dependencies:
     nunjucks "^3.2.2"
 
-hexo-generator-sitemap@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/hexo-generator-sitemap/download/hexo-generator-sitemap-2.0.0.tgz#0d4cc5c44785c1ae15c5898e0c5bff5a9e163957"
-  integrity sha1-DUzFxEeFwa4VxYmODFv/Wp4WOVc=
+hexo-generator-sitemap@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/hexo-generator-sitemap/download/hexo-generator-sitemap-2.1.0.tgz#efd938049ddbf9a961a077fcc5947918ba5b213a"
+  integrity sha1-79k4BJ3b+alhoHf8xZR5GLpbITo=
   dependencies:
-    hexo-util "^1.4.0"
+    hexo-util "^2.1.0"
     micromatch "^4.0.2"
     nunjucks "^3.1.6"
 
@@ -1275,18 +1276,18 @@ hexo-renderer-ejs@^1.0.0:
   dependencies:
     ejs "^2.6.1"
 
-hexo-renderer-marked@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/hexo-renderer-marked/download/hexo-renderer-marked-3.2.0.tgz#a5e18b4d69b61706142427d12c4c542461e7ffa2"
-  integrity sha1-peGLTWm2FwYUJCfRLExUJGHn/6I=
+hexo-renderer-marked@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/hexo-renderer-marked/download/hexo-renderer-marked-3.3.0.tgz#54bce9f00d356c71392b2fc3a881df7ff6dae8bd"
+  integrity sha1-VLzp8A01bHE5Ky/DqIHff/ba6L0=
   dependencies:
     hexo-util "^2.1.0"
     marked "^1.0.0"
 
-hexo-renderer-stylus@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/hexo-renderer-stylus/download/hexo-renderer-stylus-2.0.0.tgz#fbc89a06d33f5eecd5b120759d4af247fde0315d"
-  integrity sha1-+8iaBtM/XuzVsSB1nUryR/3gMV0=
+hexo-renderer-stylus@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/hexo-renderer-stylus/download/hexo-renderer-stylus-2.0.1.tgz#c65566e97e9058a52e46c82b0c45cf561f4b94cb"
+  integrity sha1-xlVm6X6QWKUuRsgrDEXPVh9LlMs=
   dependencies:
     nib "^1.1.2"
     stylus "^0.54.8"
@@ -1320,7 +1321,7 @@ hexo-util@*:
     strip-indent "^3.0.0"
     striptags "^3.1.1"
 
-hexo-util@^1.0.0, hexo-util@^1.4.0:
+hexo-util@^1.0.0:
   version "1.9.1"
   resolved "https://registry.npm.taobao.org/hexo-util/download/hexo-util-1.9.1.tgz#15dc10d0dca474c978cdba9c20e8d0417ac993de"
   integrity sha1-FdwQ0NykdMl4zbqcIOjQQXrJk94=
@@ -1358,10 +1359,10 @@ hexo-uuid@^1.0.2:
   dependencies:
     uuid "^2.0.1"
 
-hexo@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.npm.taobao.org/hexo/download/hexo-5.1.1.tgz#5cbd979acce5d3915919688d8d6a8c3de3e93fda"
-  integrity sha1-XL2Xmszl05FZGWiNjWqMPePpP9o=
+hexo@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npm.taobao.org/hexo/download/hexo-5.3.0.tgz#477362f13b676d7d79ecb353418ff830eb27761c"
+  integrity sha1-R3Ni8TtnbX157LNTQY/4MOsndhw=
   dependencies:
     abbrev "^1.1.1"
     archy "^1.0.0"
@@ -2170,7 +2171,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.npm.taobao.org/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
 
-shelljs@^0.8.3:
+shelljs@^0.8.4:
   version "0.8.4"
   resolved "https://registry.npm.taobao.org/shelljs/download/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha1-3naE/ut2f4cWsyYHiooAh1iQ48I=
@@ -2351,6 +2352,11 @@ timm@^1.6.1:
   version "1.7.1"
   resolved "https://registry.npm.taobao.org/timm/download/timm-1.7.1.tgz#96bab60c7d45b5a10a8a4d0f0117c6b7e5aff76f"
   integrity sha1-lrq2DH1FtaEKik0PARfGt+Wv928=
+
+timsort@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/timsort/download/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
+  integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
 tiny-emitter@^2.0.0:
   version "2.1.0"
