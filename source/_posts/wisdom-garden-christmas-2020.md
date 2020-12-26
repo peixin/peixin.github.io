@@ -1,6 +1,6 @@
 ---
 uuid: 63305700-4745-11eb-b12a-2b97a9c66ee3
-title: Wisdom-Garden-Christmas-2020
+title: Wisdom Garden Christmas 2020
 s: wisdom-garden-christmas-2020
 date: 2020-12-26 14:41:30
 tags:
@@ -19,7 +19,9 @@ categories:
 
 
 
-我今年收到的礼物，是个音乐投影灯，带回家娃非常喜欢。
+我今年收到的礼物，是个音乐投影灯，带回家娃很喜欢。我就给他继续普及了圣诞节和圣诞老人故事，在气氛的烘托下，娃终于感觉理解了。我指着圣诞树给他讲圣诞节，娃脱口而出： Christmas Tree。
+
+<!-- more -->
 
 ![wg-christmas-day-my-gift](https://blog-assets.liupei.xin/assets/wisdom-garden-christmas-2020/wg-christmas-day-my-gift.jpg-public)
 
