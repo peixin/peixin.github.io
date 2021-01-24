@@ -19,3 +19,5 @@ _assets/compressed/*
 !_assets/compressed/upload.json
 !_assets/compressed/download.json
 
+temp-assets/
+
