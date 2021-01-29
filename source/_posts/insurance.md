@@ -4,7 +4,10 @@ title: 商业保险选择
 s: insurance
 date: 2021-01-29 22:34:30
 tags:
+  - 保险
+  - 重疾险
 categories:
+  - Life
 ---
 
 

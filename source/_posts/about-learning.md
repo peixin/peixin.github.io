@@ -8,6 +8,7 @@ tags:
 	- Reading
 categories:
   - Learning
+  - Life
 ---
 
 

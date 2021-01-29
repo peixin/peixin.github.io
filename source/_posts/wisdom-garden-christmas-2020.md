@@ -4,7 +4,9 @@ title: Wisdom Garden Christmas 2020
 s: wisdom-garden-christmas-2020
 date: 2020-12-26 14:41:30
 tags:
+  - WG
 categories:
+  - Life
 ---
 
 
