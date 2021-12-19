@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en,zh-CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.liupei.xin","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="起因当我们用 npm 或者 yarn 安装一些 node 库的时候，有时候会从Github或者AWS S3上下载一些编译好的二进制包。由于包大小或其他原因，往往下载不顺利。 比如今天  sharp 一个高效的resize图片的工具，它依赖 libvips。  The typical use case for this high speed Node.js module is to convert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 安装 sharp libvips">
+<meta property="og:url" content="https://blog.liupei.xin/2019/12/06/nodejs-install-sharp-libvips/index.html">
+<meta property="og:site_name" content="Liupeixin&#39;s BLOG">
+<meta property="og:description" content="起因当我们用 npm 或者 yarn 安装一些 node 库的时候，有时候会从Github或者AWS S3上下载一些编译好的二进制包。由于包大小或其他原因，往往下载不顺利。 比如今天  sharp 一个高效的resize图片的工具，它依赖 libvips。  The typical use case for this high speed Node.js module is to convert">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-06T15:34:31.000Z">
+<meta property="article:modified_time" content="2019-12-06T15:34:31.000Z">
+<meta property="article:author" content="Liupeixin">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="sharp">
+<meta property="article:tag" content="libvips">
+<meta property="article:tag" content="npm">
+<meta property="article:tag" content="yarn">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.liupei.xin/2019/12/06/nodejs-install-sharp-libvips/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <title>Node.js 安装 sharp libvips | Liupeixin's BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44020421-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-44020421-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Liupeixin's BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.liupei.xin/2019/12/06/nodejs-install-sharp-libvips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Liupeixin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liupeixin's BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Node.js 安装 sharp libvips
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-06 23:34:31" itemprop="dateCreated datePublished" datetime="2019-12-06T23:34:31+08:00">2019-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/06/nodejs-install-sharp-libvips/" class="post-meta-item leancloud_visitors" data-flag-title="Node.js 安装 sharp libvips" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>当我们用 npm 或者 yarn 安装一些 node 库的时候，有时候会从Github或者AWS S3上下载一些编译好的二进制包。由于包大小或其他原因，往往下载不顺利。</p>
+<p>比如今天  <a target="_blank" rel="noopener" href="https://github.com/lovell/sharp">sharp</a> 一个高效的resize图片的工具，它依赖 <a target="_blank" rel="noopener" href="https://github.com/libvips/libvips">libvips</a>。</p>
+<blockquote>
+<p>The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG and WebP images of varying dimensions.<br>Resizing an image is typically 4x-5x faster than using the quickest ImageMagick and GraphicsMagick settings due to its use of libvips.</p>
+</blockquote>
+<a id="more"></a>
+
+
+<p><a target="_blank" rel="noopener" href="https://github.com/libvips/libvips">libvips</a> 是一个用C实现的图片处理库，它提供了每个平台的二进制包，可以让你不必自己从源码编译。</p>
+<blockquote>
+<p>libvips is a demand-driven, horizontally threaded image processing library. Compared to similar libraries, libvips runs quickly and uses little memory. libvips is licensed under the LGPL 2.1+.</p>
+</blockquote>
+<p>下面开始直接安装:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install sharp@0.23.1</span><br><span class="line">&gt; sharp@0.23.4 install /Users/xxx/xxx/xxx/node_modules/sharp</span><br><span class="line">&gt; (node install/libvips &amp;&amp; node install/dll-copy &amp;&amp; prebuild-install) || (node-gyp rebuild &amp;&amp; node install/dll-copy)</span><br><span class="line"></span><br><span class="line">info sharp Downloading https://github.com/lovell/sharp-libvips/releases/download/v8.8.1/libvips-8.8.1-darwin-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>由于网络原因，然后就一直卡在那，卡了很久很久。也不知道文件有多大，也不知道进度如何。一天尝试了无数次，用了很多方法无果。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>想到了安装 <a target="_blank" rel="noopener" href="https://github.com/sass/node-sass">node-sass</a> 也会有类似的问题。不过 node-sass 给了好些option解决这个问题，比如配置 <code>SASS_BINARY_SITE</code> 或者 <code>SASS_BINARY_PATH</code> 环境变量。原理无非是从另外一个镜像站点下载binary或者直接从本机某个path读取。</p>
+<p>看刚才报错，是sharp执行  script <code>node install/libvips</code> 直接去看<a target="_blank" rel="noopener" href="https://github.com/lovell/sharp">源码</a>  <code>package.json</code> 文件，有如下代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"></span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;install&quot;: &quot;(node install/libvips &amp;&amp; node install/dll-copy &amp;&amp; prebuild-install) || (node-gyp rebuild &amp;&amp; node install/dll-copy)&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>继续读文件 <code>install/libvips.js</code> 找到下面这么两句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// install/libvips.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> minimumLibvipsVersion = libvips.minimumLibvipsVersion;</span><br><span class="line"><span class="keyword">const</span> distBaseUrl = process.env.npm_config_sharp_dist_base_url || process.env.SHARP_DIST_BASE_URL || <span class="string">`https://github.com/lovell/sharp-libvips/releases/download/v<span class="subst">$&#123;minimumLibvipsVersion&#125;</span>/`</span>;</span><br></pre></td></tr></table></figure>
+<p>看来有办法了，sharp 也提供了一些环境变量来解决下载binary的问题，如果不设置，则使用默认的github的url，也就是上面 install 卡住的那一句。</p>
+<p>然后继续去找 minimumLibvipsVersion的定义，是从 <code>package.json</code> 的 <code>config.libvips</code> 里取的。顺便也看到了cachePath这个函数，说明它下载完在本机是有缓存的，默认路径是 <code>~/.npm/_libvips</code>。那这个问题就又多了一种解决方法。代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lib/libvips.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> minimumLibvipsVersion = env.npm_package_config_libvips || <span class="comment">/* istanbul ignore next */</span></span><br><span class="line">  <span class="built_in">require</span>(<span class="string">&#x27;../package.json&#x27;</span>).config.libvips;</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cachePath = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> npmCachePath = env.npm_config_cache || <span class="comment">/* istanbul ignore next */</span></span><br><span class="line">    (env.APPDATA ? path.join(env.APPDATA, <span class="string">&#x27;npm-cache&#x27;</span>) : path.join(os.homedir(), <span class="string">&#x27;.npm&#x27;</span>));</span><br><span class="line">  mkdirSync(npmCachePath);</span><br><span class="line">  <span class="keyword">const</span> libvipsCachePath = path.join(npmCachePath, <span class="string">&#x27;_libvips&#x27;</span>);</span><br><span class="line">  mkdirSync(libvipsCachePath);</span><br><span class="line">  <span class="keyword">return</span> libvipsCachePath;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"></span><br><span class="line">&quot;config&quot;: &#123;</span><br><span class="line">    &quot;libvips&quot;: &quot;8.8.1&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>至此可以说，问题解决了。我们只要找到这个binary的镜像站，或者用一些下载工具从GitHub下载存到缓存地址就行。这里我想到了 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors">taobao npm mirror</a>，搜索了下果然有 <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/sharp-libvips/">sharp-libvips</a></p>
+<h4 id="手动下载文件到缓存目录安装"><a href="#手动下载文件到缓存目录安装" class="headerlink" title="手动下载文件到缓存目录安装"></a>手动下载文件到缓存目录安装</h4><p>根据libvips版本，本机系统找到下载地址 <code>https://npm.taobao.org/mirrors/sharp-libvips/v8.8.1/libvips-8.8.1-darwin-x64.tar.gz</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://npm.taobao.org/mirrors/sharp-libvips/v8.8.1/libvips-8.8.1-darwin-x64.tar.gz .</span><br><span class="line">$ mkdir -p ~/.npm/_libvips</span><br><span class="line">$ mv libvips-8.8.1-darwin-x64.tar.gz ~/.npm/_libvips</span><br><span class="line"></span><br><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line">&gt; sharp@0.23.4 install /Users/xxx/xxx/xxx/node_modules/sharp</span><br><span class="line">&gt; (node install/libvips &amp;&amp; node install/dll-copy &amp;&amp; prebuild-install) || (node-gyp rebuild &amp;&amp; node install/dll-copy)</span><br><span class="line"></span><br><span class="line">info sharp Using cached /Users/xxx/.npm/_libvips/libvips-8.8.1-darwin-x64.tar.gz</span><br><span class="line">added 2 packages from 60 contributors <span class="keyword">in</span> 20.746s</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Using cache 安装成功。</p>
+<h4 id="设置环境变量从-taobao-mirror-下载安装-推荐"><a href="#设置环境变量从-taobao-mirror-下载安装-推荐" class="headerlink" title="设置环境变量从 taobao mirror 下载安装 (推荐)"></a>设置环境变量从 taobao mirror 下载安装 (推荐)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ SHARP_DIST_BASE_URL=https://npm.taobao.org/mirrors/sharp-libvips/v8.8.1/ npm install</span><br><span class="line"></span><br><span class="line">&gt; sharp@0.23.4 install /Users/xxx/xxx/xxx/node_modules/sharp</span><br><span class="line">&gt; (node install/libvips &amp;&amp; node install/dll-copy &amp;&amp; prebuild-install) || (node-gyp rebuild &amp;&amp; node install/dll-copy)</span><br><span class="line"></span><br><span class="line">info sharp Downloading https://npm.taobao.org/mirrors/sharp-libvips/v8.8.1/libvips-8.8.1-darwin-x64.tar.gz</span><br><span class="line">added 2 packages from 60 contributors <span class="keyword">in</span> 38.494s</span><br></pre></td></tr></table></figure>
+<p>Downloading 安装成功。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+              <a href="/tags/sharp/" rel="tag"># sharp</a>
+              <a href="/tags/libvips/" rel="tag"># libvips</a>
+              <a href="/tags/npm/" rel="tag"># npm</a>
+              <a href="/tags/yarn/" rel="tag"># yarn</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/04/birth-of-site-logo/" rel="prev" title="站点 Logo 诞生记">
+      <i class="fa fa-chevron-left"></i> 站点 Logo 诞生记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/17/2019-12-17/" rel="next" title="2019-12-17">
+      2019-12-17 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%88%B0%E7%BC%93%E5%AD%98%E7%9B%AE%E5%BD%95%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">手动下载文件到缓存目录安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%BB%8E-taobao-mirror-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E6%8E%A8%E8%8D%90"><span class="nav-number">3.2.</span> <span class="nav-text">设置环境变量从 taobao mirror 下载安装 (推荐)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Liupeixin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Liupeixin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/peixin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;peixin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/fengyi.mail@gmail.com" title="E-Mail → fengyi.mail@gmail.com"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/1085189/liupeixin" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;1085189&#x2F;liupeixin" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liupeixin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"54EbbNAX5QuGHXTuxTzisCKl-MdYXbMMI","app_key":"qtJ4MdvYSeDJvhLWQRUdr50C","server_url":"https://leancloud.liupei.xin","security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
