@@ -102,9 +102,6 @@ deploy:
   - type: "git"
     repo:
       github: git@github.com:peixin/peixin.github.io.git,master
-      coding: git@e.coding.net:peixinliu/peixinliu.git,master
-
-
 
 # hexo-easy-tags-plugin
 easy_tags_plugin:
