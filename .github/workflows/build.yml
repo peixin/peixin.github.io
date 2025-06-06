@@ -12,14 +12,14 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
 
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v4
       with:
-          node-version: "12.x"
+          node-version: "14.x"
 
     - name: Setup env
       shell: bash
@@ -47,7 +47,7 @@ jobs:
 
     - name: Cache NPM dependencies
       id: cache
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
@@ -57,7 +57,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: yarn install --production
+      run: rm -rf yarn.lock && yarn install --production
 
     - name: Deploy
       run: |
