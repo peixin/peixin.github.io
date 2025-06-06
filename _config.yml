@@ -140,3 +140,8 @@ search:
   path: search.json
   field: post
   content: true
+
+footer:
+  beian:
+    enable: true
+    icp: "陕ICP备19025098号-1"
